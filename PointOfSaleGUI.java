@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.*;
 
 public class PointOfSaleGUI extends JFrame
 {
@@ -22,11 +23,16 @@ public class PointOfSaleGUI extends JFrame
     private JLabel product5Quantity;
     private JLabel product5Price;
 
+    private JLabel product6Name;
+    private JLabel product6Quantity;
+    private JLabel product6Price;
+
     private JLabel saleLabel;
     private JComboBox saleBox;
     private JTextField saleField;
     private JButton recordButton;
     private String[] products;
+    private ArrayList<Product> productList=new ArrayList<Product>();
 
     private JLabel revenueLabel;
     private JLabel revenueNumber;
@@ -34,5 +40,10 @@ public class PointOfSaleGUI extends JFrame
     private JButton saveButton;
     private JButton quitButton;
 
+    public PointOfSaleGUI()
+    {
+        super("Point of Sale v0.01");
 
+        product1Name=new JLabel();
+    }
 }
