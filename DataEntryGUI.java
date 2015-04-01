@@ -25,10 +25,17 @@ public class DataEntryGUI extends JFrame
     public DataEntryGUI()
     {
         super("Point of Sale v0.01 - Data Entry");
-        setLayout(new GridLayout(3, 2));
+        setLayout(new GridLayout(4,2));
         count=0;
 
-        numberOfProducts=(Integer)JOptionPane.showInputDialog(null, "Select number of products:", "Products", JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        try
+        {
+            numberOfProducts = (Integer) JOptionPane.showInputDialog(null, "Select number of products:", "Products", JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        }
+        catch (NullPointerException npe)
+        {
+            System.exit(0);
+        }
 
         nameLabel=new JLabel("Enter product name");
         nameField=new JTextField();
@@ -46,12 +53,36 @@ public class DataEntryGUI extends JFrame
         {
             public void actionPerformed(ActionEvent ae)
             {
-                if(count<5)
+                count++;
+                productList.add(new Product(nameField.getText(),Double.parseDouble(priceField.getText()),Integer.parseInt(quantityField.getText())));
+                nameField.setText("");
+                priceField.setText("");
+                quantityField.setText("");
+                nameField.requestFocus();
+
+                if(count>=numberOfProducts)
                 {
-                    productList.add(new Product(nameField.getText(),Double.parseDouble(priceField.getText()),Integer.parseInt(quantityField.getText())));
+                    setVisible(false);
+                    PointOfSaleGUI g=new PointOfSaleGUI(productList);
+                    g.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                    g.setLocationRelativeTo(null);
+                    g.setSize(650,350);
+                    g.setVisible(true);
                 }
             }
         }
         );
+
+        add(nameLabel);
+        add(nameField);
+
+        add(priceLabel);
+        add(priceField);
+
+        add(quantityLabel);
+        add(quantityField);
+
+        add(submitLabel);
+        add(submitButton);
     }
 }

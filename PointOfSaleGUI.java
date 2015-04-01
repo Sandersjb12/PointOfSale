@@ -40,10 +40,12 @@ public class PointOfSaleGUI extends JFrame
     private JButton saveButton;
     private JButton quitButton;
 
-    public PointOfSaleGUI()
+    public PointOfSaleGUI(ArrayList<Product> productList)
     {
         super("Point of Sale v0.01");
 
         product1Name=new JLabel();
+
+        System.out.println(productList);
     }
 }
