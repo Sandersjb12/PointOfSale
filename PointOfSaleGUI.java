@@ -47,7 +47,11 @@ public class PointOfSaleGUI extends JFrame
         switch(productList.size())
         {
             case 6:
-                product6Name=new JLabel(productList.get(6).getName());
+                product6Name=new JLabel(productList.get(5).getName());
+                product6Price=new JLabel(Double.toString(productList.get(5).getPrice()));
+                product6Quantity=new JLabel(Integer.toString(productList.get(5).getQuantity()));
+            case 5:
+
         }
 
         System.out.println(productList);
