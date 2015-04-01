@@ -7,7 +7,6 @@ public class DataEntryGUI extends JFrame
 {
     int numberOfProducts;
     Integer[] options={1,2,3,4,5,6};
-    int count;
     ArrayList<Product> productList=new ArrayList<Product>();
 
     private JLabel nameLabel;
@@ -26,7 +25,6 @@ public class DataEntryGUI extends JFrame
     {
         super("Point of Sale v0.01 - Data Entry");
         setLayout(new GridLayout(4,2));
-        count=0;
 
         try
         {
@@ -53,14 +51,13 @@ public class DataEntryGUI extends JFrame
         {
             public void actionPerformed(ActionEvent ae)
             {
-                count++;
                 productList.add(new Product(nameField.getText(),Double.parseDouble(priceField.getText()),Integer.parseInt(quantityField.getText())));
                 nameField.setText("");
                 priceField.setText("");
                 quantityField.setText("");
                 nameField.requestFocus();
 
-                if(count>=numberOfProducts)
+                if(productList.size()>=numberOfProducts)
                 {
                     setVisible(false);
                     PointOfSaleGUI g=new PointOfSaleGUI(productList);
