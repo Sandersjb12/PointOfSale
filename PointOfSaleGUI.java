@@ -48,10 +48,35 @@ public class PointOfSaleGUI extends JFrame
         {
             case 6:
                 product6Name=new JLabel(productList.get(5).getName());
-                product6Price=new JLabel(Double.toString(productList.get(5).getPrice()));
+                product6Price=new JLabel(String.format("$%.2f", productList.get(5).getPrice()));
                 product6Quantity=new JLabel(Integer.toString(productList.get(5).getQuantity()));
             case 5:
+                product5Name=new JLabel(productList.get(4).getName());
+                product5Price=new JLabel(String.format("$%.2f", productList.get(4).getPrice()));
+                product5Quantity=new JLabel(Integer.toString(productList.get(4).getQuantity()));
+            case 4:
+                product4Name=new JLabel(productList.get(3).getName());
+                product4Price=new JLabel(String.format("$%.2f", productList.get(3).getPrice()));
+                product4Quantity=new JLabel(Integer.toString(productList.get(3).getQuantity()));
 
+            case 3:
+                product3Name=new JLabel(productList.get(2).getName());
+                product3Price=new JLabel(String.format("$%.2f", productList.get(2).getPrice()));
+                product3Quantity=new JLabel(Integer.toString(productList.get(2).getQuantity()));
+
+            case 2:
+                product2Name=new JLabel(productList.get(1).getName());
+                product2Price=new JLabel(String.format("$%.2f", productList.get(1).getPrice()));
+                product2Quantity=new JLabel(Integer.toString(productList.get(1).getQuantity()));
+
+            case 1:
+                product1Name=new JLabel(productList.get(0).getName());
+                product1Price=new JLabel(String.format("$%.2f", productList.get(0).getPrice()));
+                product1Quantity=new JLabel(Integer.toString(productList.get(0).getQuantity()));
+                break;
+
+            default:
+                throw (new IndexOutOfBoundsException());
         }
 
         System.out.println(productList);
