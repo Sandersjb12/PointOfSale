@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 public class PointOfSaleGUI extends JFrame
@@ -102,6 +104,14 @@ public class PointOfSaleGUI extends JFrame
 
         saveButton=new JButton("Save");
         quitButton=new JButton("Quit");
+
+        recordButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae)
+            {
+
+            }
+        });
 
         add(product1Name);
         add(product1Price);
