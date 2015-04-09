@@ -43,11 +43,13 @@ public class PointOfSaleGUI extends JFrame
     private JButton saveButton;
     private JButton quitButton;
 
-    public PointOfSaleGUI(ArrayList<Product> productList)
+    public PointOfSaleGUI(ArrayList<Product> tempProductList)
     {
         super("Point of Sale v0.01");
 
         setLayout(new GridLayout(productList.size()+2,3));
+
+        productList=tempProductList;
 
         switch(productList.size())
         {
@@ -109,7 +111,11 @@ public class PointOfSaleGUI extends JFrame
         {
             public void actionPerformed(ActionEvent ae)
             {
+                Product tempProduct;
+                tempProduct=productList.get(saleBox.getSelectedIndex());
+                tempProduct.setQuantity(tempProduct.getQuantity()-Integer.parseInt(saleField.getText()));
 
+                updateFields();
             }
         });
 
@@ -159,5 +165,15 @@ public class PointOfSaleGUI extends JFrame
 
         add(saveButton);
         add(quitButton);
+    }
+
+    public void updateFields()
+    {
+        product1Quantity.setText(Integer.toString(productList.get(0).getQuantity()));
+        product2Quantity.setText(Integer.toString(productList.get(1).getQuantity()));
+        product3Quantity.setText(Integer.toString(productList.get(2).getQuantity()));
+        product4Quantity.setText(Integer.toString(productList.get(3).getQuantity()));
+        product5Quantity.setText(Integer.toString(productList.get(4).getQuantity()));
+        product6Quantity.setText(Integer.toString(productList.get(5).getQuantity()));
     }
 }
