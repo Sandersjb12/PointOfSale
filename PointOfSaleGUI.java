@@ -47,9 +47,9 @@ public class PointOfSaleGUI extends JFrame
     {
         super("Point of Sale v0.01");
 
-        setLayout(new GridLayout(productList.size()+2,3));
-
         productList=tempProductList;
+
+        setLayout(new GridLayout(productList.size()+2,3));
 
         switch(productList.size())
         {
@@ -59,6 +59,7 @@ public class PointOfSaleGUI extends JFrame
                 product6Quantity=new JLabel(String.format("Quantity: %d", productList.get(5).getQuantity()));
 
             case 5:
+
                 product5Name=new JLabel(productList.get(4).getName());
                 product5Price=new JLabel(String.format("Price: $%.2f", productList.get(4).getPrice()));
                 product5Quantity=new JLabel(String.format("Quantity: %d", productList.get(4).getQuantity()));
@@ -115,6 +116,8 @@ public class PointOfSaleGUI extends JFrame
                 tempProduct=productList.get(saleBox.getSelectedIndex());
                 tempProduct.setQuantity(tempProduct.getQuantity()-Integer.parseInt(saleField.getText()));
 
+                productList.get(saleBox.getSelectedIndex()).setQuantity(tempProduct.getQuantity());
+
                 updateFields();
             }
         });
@@ -169,11 +172,29 @@ public class PointOfSaleGUI extends JFrame
 
     public void updateFields()
     {
-        product1Quantity.setText(Integer.toString(productList.get(0).getQuantity()));
-        product2Quantity.setText(Integer.toString(productList.get(1).getQuantity()));
-        product3Quantity.setText(Integer.toString(productList.get(2).getQuantity()));
-        product4Quantity.setText(Integer.toString(productList.get(3).getQuantity()));
-        product5Quantity.setText(Integer.toString(productList.get(4).getQuantity()));
-        product6Quantity.setText(Integer.toString(productList.get(5).getQuantity()));
+        switch(productList.size())
+        {
+            case 6:
+                product6Quantity.setText(Integer.toString(productList.get(5).getQuantity()));
+
+            case 5:
+                product5Quantity.setText(Integer.toString(productList.get(4).getQuantity()));
+
+            case 4:
+                product4Quantity.setText(Integer.toString(productList.get(3).getQuantity()));
+
+            case 3:
+                product3Quantity.setText(Integer.toString(productList.get(2).getQuantity()));
+
+            case 2:
+                product2Quantity.setText(Integer.toString(productList.get(1).getQuantity()));
+
+            case 1:
+                product1Quantity.setText(Integer.toString(productList.get(0).getQuantity()));
+                break;
+
+            default:
+                throw (new IndexOutOfBoundsException());
+        }
     }
 }
