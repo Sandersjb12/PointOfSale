@@ -112,13 +112,23 @@ public class PointOfSaleGUI extends JFrame
         {
             public void actionPerformed(ActionEvent ae)
             {
-                Product tempProduct;
-                tempProduct=productList.get(saleBox.getSelectedIndex());
-                tempProduct.setQuantity(tempProduct.getQuantity()-Integer.parseInt(saleField.getText()));
+                try
+                {
+                    Product tempProduct;
+                    tempProduct = productList.get(saleBox.getSelectedIndex());
+                    tempProduct.setQuantity(tempProduct.getQuantity() - Integer.parseInt(saleField.getText()));
 
-                productList.get(saleBox.getSelectedIndex()).setQuantity(tempProduct.getQuantity());
+                    if(tempProduct.getQuantity()<0)
+                        throw(new NegativeQuantityException(tempProduct));
 
-                updateFields();
+                    productList.get(saleBox.getSelectedIndex()).setQuantity(tempProduct.getQuantity());
+
+                    updateFields();
+                }
+                catch(NegativeQuantityException nqe)
+                {
+                    JOptionPane.showMessageDialog(null,"Quantity cannot be negative!");
+                }
             }
         });
 
@@ -175,22 +185,22 @@ public class PointOfSaleGUI extends JFrame
         switch(productList.size())
         {
             case 6:
-                product6Quantity.setText(Integer.toString(productList.get(5).getQuantity()));
+                product6Quantity.setText(String.format("Quantity: %d", productList.get(5).getQuantity()));
 
             case 5:
-                product5Quantity.setText(Integer.toString(productList.get(4).getQuantity()));
+                product5Quantity.setText(String.format("Quantity: %d", productList.get(4).getQuantity()));
 
             case 4:
-                product4Quantity.setText(Integer.toString(productList.get(3).getQuantity()));
+                product4Quantity.setText(String.format("Quantity: %d", productList.get(3).getQuantity()));
 
             case 3:
-                product3Quantity.setText(Integer.toString(productList.get(2).getQuantity()));
+                product3Quantity.setText(String.format("Quantity: %d", productList.get(2).getQuantity()));
 
             case 2:
-                product2Quantity.setText(Integer.toString(productList.get(1).getQuantity()));
+                product2Quantity.setText(String.format("Quantity: %d", productList.get(1).getQuantity()));
 
             case 1:
-                product1Quantity.setText(Integer.toString(productList.get(0).getQuantity()));
+                product1Quantity.setText(String.format("Quantity: %d", productList.get(0).getQuantity()));
                 break;
 
             default:
