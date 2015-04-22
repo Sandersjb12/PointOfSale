@@ -132,6 +132,18 @@ public class PointOfSaleGUI extends JFrame
             }
         });
 
+        quitButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                JFrame confirmFrame=new JFrame();
+                int result=JOptionPane.showConfirmDialog(confirmFrame,"Do you really want to exit PointOfSale? Any unsaved data will be lost.");
+
+                if(result==JOptionPane.YES_OPTION)
+                    System.exit(0);
+            }
+        });
+
         add(product1Name);
         add(product1Price);
         add(product1Quantity);
